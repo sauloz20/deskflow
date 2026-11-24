@@ -18,7 +18,7 @@ Node.js 22+ e pnpm 10.4.1: `pnpm install`, depois `pnpm dev`. Abrir http://local
 
 - [x] Tokens e marca integrados.
 - [x] Componentes iniciais e catálogo.
-- [ ] Instalação, build e teste visual em desktop/360 px.
+- [x] Instalação, build e captura visual em desktop/360 px (CI 45403856111).
 - [ ] Componentes restantes e fluxos por papel.
 - [ ] Aprovação do design definitivo.
 
@@ -27,7 +27,8 @@ Node.js 22+ e pnpm 10.4.1: `pnpm install`, depois `pnpm dev`. Abrir http://local
 - [x] Layout mobile com lista de chamados em vez de tabela estreita, controles de largura flexível e foco visível.
 - [x] Skip link, cabeçalhos de tabela, contagem anunciável, contraste de borda e preferência por movimento reduzido.
 - [x] Testes Playwright e axe configurados em desktop e 360 px; workflow de CI preparado.
-- [ ] Executar build, testes e verificação manual com leitor de tela e zoom 200%. Não alegar conformidade WCAG até validar.
+- [x] Build, testes automatizados e linha de base axe no CI 45403856111.
+- [ ] Verificação manual com leitor de tela, teclado e zoom 200%. Não alegar conformidade WCAG até validar.
 
 Execute `pnpm build` antes dos testes. Execute `pnpm --filter @deskflow/web exec playwright install chromium` e `pnpm --filter @deskflow/web test:e2e`. Referências: https://ui.shadcn.com/docs/monorepo e https://playwright.dev/docs/accessibility-testing.
 
@@ -41,4 +42,4 @@ Seleção de organização e papel fictícios, portal do solicitante, atendiment
 
 ## Evidência visual
 
-O CI gera capturas das interfaces principais em desktop e 360 px, verifica ausência de rolagem horizontal e publica o artefato `deskflow-interface-evidence`. A inspeção humana das imagens e a aprovação visual permanecem necessárias.
+O CI gera capturas das interfaces principais em desktop e 360 px, verifica ausência de rolagem horizontal e publica o artefato `deskflow-interface-evidence`. As 30 capturas da execução [45403856111](https://github.com/sauloz20/deskflow/actions/runs/45403856111) foram inspecionadas visualmente com assistência de IA. Consulte o [relatório de revisão](visual-review.md). A aprovação humana definitiva e a validação interativa permanecem pendentes.
