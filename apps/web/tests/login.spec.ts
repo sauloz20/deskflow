@@ -8,7 +8,7 @@ test('login demonstration and password visibility', async ({ page }) => {
   await page.getByLabel('E-mail').fill('wrong@example.com');
   await page.getByLabel('Senha', { exact: true }).fill('wrong');
   await page.getByRole('button', { name: 'Entrar' }).click();
-  await expect(page.getByRole('alert')).toContainText('dados fictícios');
+  await expect(page.locator('#login-error')).toContainText('dados fictícios');
   await page.getByRole('button', { name: 'Preencher dados de demonstração' }).click();
   await page.getByRole('button', { name: 'Mostrar senha' }).click();
   await expect(page.getByLabel('Senha', { exact: true })).toHaveAttribute('type', 'text');
