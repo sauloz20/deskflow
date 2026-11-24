@@ -54,3 +54,36 @@ th { color: var(--muted); font-weight: 600; }
 }
 @media (min-width: 640px) { .df-ticket-list { display: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* Login prototype */
+.df-login { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: white; }
+.df-login-main { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding: clamp(24px, 5vw, 64px); gap: 48px; }
+.df-login-brand { display: flex; align-items: center; gap: 10px; color: var(--primary); font-weight: 800; font-size: 25px; letter-spacing: -.04em; }
+.df-login-content { width: 100%; max-width: 400px; align-self: center; }
+.df-login-kicker { display: flex; align-items: center; gap: 8px; color: var(--accent-text); font-weight: 700; font-size: 11px; letter-spacing: .1em; }
+.df-login-title { font-size: clamp(28px, 3vw, 40px); line-height: 1.13; font-weight: 700; letter-spacing: -.04em; margin: 12px 0; }
+.df-login-description { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
+.df-login-form { display: grid; gap: 19px; }
+.df-password { position: relative; }
+.df-password input { padding-right: 52px; }
+.df-eye { min-height: 44px; min-width: 44px; position: absolute; right: 1px; top: 0; display: grid; place-items: center; color: var(--muted); }
+.df-login-error { font-size: 14px; color: var(--danger); }
+.df-demo-box { background: var(--background); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 24px; font-size: 14px; }
+.df-demo-box p { color: var(--muted); margin: 6px 0 14px; }
+.df-login-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; }
+.df-login-footer a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
+.df-login-aside { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; background: var(--primary); color: white; padding: clamp(32px, 6vw, 88px); }
+.df-login-aside-content { max-width: 460px; position: relative; z-index: 1; }
+.df-login-chip { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .1em; font-weight: 700; color: #a7f3d0; }
+.df-login-aside h2 { font-size: clamp(34px, 4.5vw, 64px); letter-spacing: -.055em; font-weight: 700; line-height: 1.05; margin: 22px 0; }
+.df-login-aside p { color: #d6e7ed; line-height: 1.7; font-size: 17px; margin-bottom: 40px; }
+.df-login-feature { display: flex; gap: 14px; align-items: flex-start; padding: 18px 0; border-top: 1px solid #557686; }
+.df-login-feature svg { flex-shrink: 0; color: #a7f3d0; }
+.df-login-feature strong, .df-login-feature span { display: block; }
+.df-login-feature span { color: #d6e7ed; font-size: 14px; margin-top: 4px; }
+.df-login-art { width: 74%; position: absolute; z-index: -1; bottom: -20%; right: -15%; color: #3c697a; transform: rotate(-18deg); }
+@media (max-width: 767px) {
+  .df-login { grid-template-columns: minmax(0,1fr); }
+  .df-login-aside { display: none; }
+  .df-login-main { min-height: 100svh; gap: 28px; padding: 24px; }
+}

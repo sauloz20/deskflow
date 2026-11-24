@@ -1,60 +1,90 @@
 'use client';
 
-import { useState } from 'react';
-import { LayoutGrid, Ticket, Palette, Search } from 'lucide-react';
-import { Alert, Button, Card, EmptyState, Input, MetricCard, PriorityBadge, StatusBadge, Timeline, type Status, type Priority } from '@deskflow/ui';
+import { useState, type FormEvent } from 'react';
+import { ArrowRight, CheckCircle2, Eye, EyeOff, Layers3, LifeBuoy, ShieldCheck } from 'lucide-react';
+import { Button } from '@deskflow/ui';
+import Link from 'next/link';
 
-const tickets: { id: string; title: string; status: Status; priority: Priority }[] = [
-  { id: 'DF-104', title: 'Falha de acesso ao e-mail', status: 'Aberto', priority: 'Alta' },
-  { id: 'DF-103', title: 'Configuração de impressora', status: 'Em atendimento', priority: 'Média' },
-  { id: 'DF-102', title: 'Acesso à pasta do financeiro', status: 'Aguardando solicitante', priority: 'Baixa' },
-  { id: 'DF-101', title: 'Atualização do navegador', status: 'Resolvido', priority: 'Baixa' },
-];
-const statuses: Status[] = ['Aberto', 'Em atendimento', 'Aguardando solicitante', 'Resolvido', 'Fechado'];
+const demoEmail = 'demo@deskflow.example';
+const demoPassword = 'deskflow-demo';
 
-export default function DesignSystem() {
-  const [query, setQuery] = useState('');
-  const [status, setStatus] = useState<Status | 'Todos'>('Todos');
-  const [notice, setNotice] = useState(false);
-  const filtered = tickets.filter(ticket => (status === 'Todos' || ticket.status === status) && `${ticket.id} ${ticket.title}`.toLowerCase().includes(query.toLowerCase()));
+export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [visible, setVisible] = useState(false);
+  const [error, setError] = useState('');
+  const [authenticated, setAuthenticated] = useState(false);
+
+  function signIn(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (email.trim().toLowerCase() !== demoEmail || password !== demoPassword) {
+      setError('Use os dados fictícios da demonstração para continuar.');
+      return;
+    }
+    setError('');
+    setPassword('');
+    setAuthenticated(true);
+  }
 
   return (
-    <div className="min-h-screen lg:grid lg:grid-cols-[240px_1fr]">
-      <a className="df-skip" href="#main-content">Pular para conteúdo</a>
-      <aside className="border-b border-slate-200 bg-white p-6 lg:border-b-0 lg:border-r">
-        <div className="mb-8 flex items-center gap-3 text-xl font-bold text-primary">
-          <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true"><path fill="#12465A" d="M0 0H57C81 0 100 19 100 45c0 11-4 21-11 29 3-12 0-22-7-29C75 38 66 35 57 35H0Z"/><path fill="#0D9488" d="M0 100v-10c0-13 11-24 24-24h43c12 0 20-6 23-15 4 7 5 15 1 24C84 91 70 100 55 100Z"/></svg>
-          DeskFlow
+    <main className="df-login">
+      <section className="df-login-main" aria-labelledby="login-title">
+        <header className="df-login-brand">
+          <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><path fill="#12465A" d="M0 0H57C81 0 100 19 100 45c0 11-4 21-11 29 3-12 0-22-7-29C75 38 66 35 57 35H0Z"/><path fill="#0D9488" d="M0 100v-10c0-13 11-24 24-24h43c12 0 20-6 23-15 4 7 5 15 1 24C84 91 70 100 55 100Z"/></svg>
+          <span>DeskFlow</span>
+        </header>
+
+        <div className="df-login-content">
+          {authenticated ? (
+            <>
+              <div className="df-login-kicker"><CheckCircle2 size={18} aria-hidden="true"/> Demonstração iniciada</div>
+              <h1 id="login-title" className="df-login-title">Bem-vindo ao DeskFlow.</h1>
+              <p className="df-login-description">A seleção de organização será a próxima interface do protótipo. Nenhuma sessão real foi criada.</p>
+              <Button onClick={() => { setAuthenticated(false); setEmail(''); }}>Voltar ao login</Button>
+            </>
+          ) : (
+            <>
+              <span className="df-login-kicker">ACESSO À PLATAFORMA</span>
+              <h1 id="login-title" className="df-login-title">Bem-vindo de volta.</h1>
+              <p className="df-login-description">Acesse seu ambiente de atendimento e acompanhe suas solicitações.</p>
+              <form onSubmit={signIn} className="df-login-form">
+                <div className="df-field">
+                  <label htmlFor="email">E-mail</label>
+                  <input id="email" type="email" autoComplete="username" required placeholder="demo@deskflow.example" value={email} onChange={e => { setEmail(e.target.value); setError(''); }} />
+                </div>
+                <div className="df-field">
+                  <label htmlFor="password">Senha</label>
+                  <div className="df-password">
+                    <input id="password" type={visible ? 'text' : 'password'} autoComplete="current-password" required value={password} onChange={e => { setPassword(e.target.value); setError(''); }} aria-describedby={error ? 'login-error' : undefined} />
+                    <button type="button" className="df-eye" onClick={() => setVisible(v => !v)} aria-label={visible ? 'Ocultar senha' : 'Mostrar senha'}>{visible ? <EyeOff size={20} aria-hidden="true"/> : <Eye size={20} aria-hidden="true"/>}</button>
+                  </div>
+                </div>
+                {error && <p id="login-error" role="alert" className="df-login-error">{error}</p>}
+                <Button type="submit" className="w-full">Entrar <ArrowRight size={17} aria-hidden="true"/></Button>
+              </form>
+              <div className="df-demo-box">
+                <strong>Explore a demonstração</strong>
+                <p>Use apenas dados fictícios. Não insira sua senha real.</p>
+                <Button variant="secondary" className="w-full" onClick={() => { setEmail(demoEmail); setPassword(demoPassword); setError(''); }}>Preencher dados de demonstração</Button>
+              </div>
+            </>
+          )}
         </div>
-        <nav aria-label="Seções do catálogo" className="grid gap-2 text-sm">
-          <a href="#fundamentos" className="flex gap-3 rounded-lg bg-slate-100 p-3 font-semibold"><Palette size={18} aria-hidden="true"/> Fundamentos</a>
-          <a href="#componentes" className="flex gap-3 rounded-lg p-3 hover:bg-slate-100"><LayoutGrid size={18} aria-hidden="true"/> Componentes</a>
-          <a href="#chamados" className="flex gap-3 rounded-lg p-3 hover:bg-slate-100"><Ticket size={18} aria-hidden="true"/> Chamados</a>
-        </nav>
+        <footer className="df-login-footer">
+          <span>DeskFlow · Protótipo visual</span>
+          <Link href="/design-system">Design System</Link>
+        </footer>
+      </section>
+      <aside className="df-login-aside" aria-label="Sobre o DeskFlow">
+        <div className="df-login-aside-content">
+          <div className="df-login-chip"><LifeBuoy size={17} aria-hidden="true"/> CENTRAL DE ATENDIMENTO</div>
+          <h2>Seu suporte, em um único lugar.</h2>
+          <p>Organize demandas, acompanhe cada solicitação e mantenha sua equipe alinhada.</p>
+          <div className="df-login-feature"><Layers3 size={22} aria-hidden="true"/><div><strong>Fluxo organizado</strong><span>Solicitações e responsáveis em um só ambiente.</span></div></div>
+          <div className="df-login-feature"><ShieldCheck size={22} aria-hidden="true"/><div><strong>Clareza no atendimento</strong><span>Histórico, prioridades e próximos passos.</span></div></div>
+        </div>
+        <div className="df-login-art" aria-hidden="true"><svg viewBox="0 0 100 100"><path fill="none" stroke="currentColor" strokeWidth="1" d="M0 0H57C81 0 100 19 100 45c0 11-4 21-11 29 3-12 0-22-7-29C75 38 66 35 57 35H0ZM0 100v-10c0-13 11-24 24-24h43c12 0 20-6 23-15 4 7 5 15 1 24C84 91 70 100 55 100Z"/></svg></div>
       </aside>
-      <main id="main-content" tabIndex={-1} className="min-w-0 p-4 sm:p-5 lg:p-10">
-        <header className="mb-8"><p className="text-sm font-semibold text-teal-700">DESKFLOW / UI KIT · 0.1</p><h1 className="mt-2 text-3xl font-bold tracking-tight">Design System</h1><p className="mt-2 text-slate-600">Fundação visual do atendimento. Ambiente de demonstração com dados fictícios.</p></header>
-        <section id="fundamentos" className="mb-8">
-          <h2 className="mb-3 text-lg font-semibold">Fundamentos</h2>
-          <Card><div className="grid grid-cols-2 gap-4 sm:grid-cols-4">{[['Azul petróleo','#12465A'],['Esmeralda','#0D9488'],['Fundo','#F8FAFC'],['Texto','#0F172A']].map(([name,color]) => <div key={name}><div className="mb-2 h-16 rounded-lg border border-slate-200" style={{background:color}}/><strong className="block text-sm">{name}</strong><small>{color}</small></div>)}</div><p className="mt-5 text-sm text-slate-600">Geist · escala de espaçamento 4 px · radius 6 / 8 / 12 px</p></Card>
-        </section>
-        <section id="componentes" className="mb-8">
-          <h2 className="mb-3 text-lg font-semibold">Componentes</h2>
-          <div className="grid gap-4 xl:grid-cols-2">
-            <Card><h3 className="mb-4 font-semibold">Ações e feedback</h3><div className="flex flex-wrap gap-2"><Button onClick={() => setNotice(true)}>Salvar demonstração</Button><Button variant="secondary" onClick={() => setNotice(false)}>Limpar aviso</Button><Button variant="danger" disabled>Excluir</Button></div>{notice && <div className="mt-4"><Alert>Alteração simulada. Nenhum dado foi enviado.</Alert></div>}</Card>
-            <Card><h3 className="mb-4 font-semibold">Estados e prioridade</h3><div className="flex flex-wrap gap-2">{statuses.map(s => <StatusBadge key={s} status={s}/>)}</div><div className="mt-3 flex flex-wrap gap-2">{(['Baixa','Média','Alta','Crítica'] as Priority[]).map(p => <PriorityBadge key={p} priority={p}/>)}</div></Card>
-          </div>
-        </section>
-        <section id="chamados">
-          <h2 className="mb-3 text-lg font-semibold">Indicadores e fila de chamados</h2>
-          <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">{statuses.slice(0,4).map(s => <MetricCard key={s} title={s} value={tickets.filter(t => t.status === s).length} selected={status === s} onClick={() => { setStatus(s); setQuery(''); }}/>)}</div>
-          <Card><div className="mb-4 grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-end"><div className="min-w-0 flex-1"><Input id="search" label="Buscar chamado" placeholder="Protocolo ou título" value={query} onChange={e => setQuery(e.target.value)}/></div><div className="df-field"><label htmlFor="status">Status</label><select id="status" value={status} onChange={e => setStatus(e.target.value as Status | 'Todos')}><option>Todos</option>{statuses.map(s => <option key={s}>{s}</option>)}</select></div><Button variant="secondary" onClick={() => {setQuery('');setStatus('Todos');}}><Search size={16} aria-hidden="true"/>Limpar filtros</Button></div>
-          <p role="status" className="mb-3 text-sm text-slate-600">{filtered.length} {filtered.length === 1 ? 'chamado encontrado' : 'chamados encontrados'}</p>
-          <div className="df-ticket-table overflow-x-auto" role="region" aria-label="Tabela de chamados" tabIndex={0}>{filtered.length ? <table><caption className="sr-only">Chamados fictícios filtrados</caption><thead><tr><th scope="col">Protocolo</th><th scope="col">Solicitação</th><th scope="col">Status</th><th scope="col">Prioridade</th></tr></thead><tbody>{filtered.map(t => <tr key={t.id}><td>{t.id}</td><td>{t.title}</td><td><StatusBadge status={t.status}/></td><td><PriorityBadge priority={t.priority}/></td></tr>)}</tbody></table> : <EmptyState title="Nenhum chamado encontrado" description="Ajuste os filtros para visualizar resultados."/>}</div>
-          <div className="df-ticket-list">{filtered.length ? <ul aria-label="Chamados filtrados" className="grid gap-3">{filtered.map(t => <li key={t.id} className="rounded-lg border border-slate-200 p-3"><p className="text-sm text-slate-600">{t.id}</p><p className="my-2 font-semibold break-words">{t.title}</p><div className="flex flex-wrap gap-2"><StatusBadge status={t.status}/><PriorityBadge priority={t.priority}/></div></li>)}</ul> : <EmptyState title="Nenhum chamado encontrado" description="Ajuste os filtros para visualizar resultados."/>}</div></Card>
-          <div className="mt-4"><Card><h3 className="mb-4 font-semibold">Linha do tempo · exemplo</h3><Timeline events={[{id:'1',label:'Chamado criado',author:'Marina Alves (fictício)',date:'24/11/2026 09:00'},{id:'2',label:'Atribuído à equipe de TI',author:'Pedro Lima (fictício)',date:'24/11/2026 09:15'}]}/></Card></div>
-        </section>
-      </main>
-    </div>
+    </main>
   );
 }

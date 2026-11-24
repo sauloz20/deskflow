@@ -30,3 +30,7 @@ Node.js 22+ e pnpm 10.4.1: `pnpm install`, depois `pnpm dev`. Abrir http://local
 - [ ] Executar build, testes e verificação manual com leitor de tela e zoom 200%. Não alegar conformidade WCAG até validar.
 
 Execute `pnpm build` antes dos testes. Execute `pnpm --filter @deskflow/web exec playwright install chromium` e `pnpm --filter @deskflow/web test:e2e`. Referências: https://ui.shadcn.com/docs/monorepo e https://playwright.dev/docs/accessibility-testing.
+
+## Protótipo de login
+
+A rota `/` apresenta o login demonstrativo e `/design-system` preserva o catálogo visual. O login usa somente credenciais fictícias, sem API, banco ou sessão real. A seleção de organização será implementada posteriormente. Testes de fluxo e acessibilidade foram adicionados; aguardar CI.

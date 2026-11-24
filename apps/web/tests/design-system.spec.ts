@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test('layout, keyboard navigation and ticket filters', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/design-system');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Pular para conteúdo' })).toBeFocused();
   await page.keyboard.press('Enter');
@@ -17,7 +17,7 @@ test('layout, keyboard navigation and ticket filters', async ({ page }) => {
 });
 
 test('automated accessibility baseline', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/design-system');
   const result = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
   expect(result.violations).toEqual([]);
 });
