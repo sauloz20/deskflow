@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/tokens.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@deskflow/ui/components",
+    "utils": "@deskflow/ui/lib/utils",
+    "ui": "@deskflow/ui/components",
+    "lib": "@deskflow/ui/lib",
+    "hooks": "@deskflow/ui/hooks"
+  }
+}

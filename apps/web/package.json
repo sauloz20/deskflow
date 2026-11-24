@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@deskflow/ui": "workspace:*",
@@ -21,6 +22,8 @@
     "typescript": "^5.9.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "@playwright/test": "^1.58.0",
+    "@axe-core/playwright": "^4.11.0"
   }
 }

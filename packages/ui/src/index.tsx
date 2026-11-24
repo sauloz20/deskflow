@@ -1,12 +1,5 @@
-import type { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode } from 'react';
-
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'secondary' | 'danger';
-};
-
-export function Button({ variant = 'primary', className = '', ...props }: ButtonProps) {
-  return <button type="button" className={`df-button df-button-${variant} ${className}`} {...props} />;
-}
+import type { InputHTMLAttributes, ReactNode } from 'react';
+export { Button } from './components/button';
 
 export function Input({ label, id, ...props }: InputHTMLAttributes<HTMLInputElement> & { label: string; id: string }) {
   return <div className="df-field"><label htmlFor={id}>{label}</label><input id={id} {...props} /></div>;
@@ -35,8 +28,8 @@ export function Card({ children, className = '' }: { children: ReactNode; classN
   return <section className={`df-card ${className}`}>{children}</section>;
 }
 
-export function MetricCard({ title, value, onClick }: { title: string; value: number; onClick?: () => void }) {
-  return <button type="button" className="df-card df-metric" onClick={onClick}><span>{title}</span><strong>{value}</strong><small>Ver chamados →</small></button>;
+export function MetricCard({ title, value, onClick, selected = false }: { title: string; value: number; onClick?: () => void; selected?: boolean }) {
+  return <button type="button" className="df-card df-metric" aria-pressed={selected} onClick={onClick}><span>{title}</span><strong>{value}</strong><small>Ver chamados →</small></button>;
 }
 
 export function EmptyState({ title, description }: { title: string; description: string }) {
