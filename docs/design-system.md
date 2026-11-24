@@ -38,3 +38,7 @@ A rota `/` apresenta o login demonstrativo e `/design-system` preserva o catálo
 ## Protótipo de fluxos P0
 
 Seleção de organização e papel fictícios, portal do solicitante, atendimento, painel e administração foram implementados em memória para demonstração. Não constituem autenticação, autorização ou persistência reais; RF01–RF10, RF21 e RF22 dependem de implementação e validação no servidor. Testes de navegação e criação de chamados adicionados.
+
+## Evidência visual
+
+O CI gera capturas das interfaces principais em desktop e 360 px, verifica ausência de rolagem horizontal e publica o artefato `deskflow-interface-evidence`. A inspeção humana das imagens e a aprovação visual permanecem necessárias.
