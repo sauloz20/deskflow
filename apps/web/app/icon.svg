@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DeskFlow">
+  <rect width="64" height="64" rx="15" fill="#12465A"/>
+  <g transform="translate(12 12) scale(.4)">
+    <path fill="#FFFFFF" d="M0 0H57C81 0 100 19 100 45c0 11-4 21-11 29 3-12 0-22-7-29C75 38 66 35 57 35H0Z"/>
+    <path fill="#2DD4BF" d="M0 100v-10c0-13 11-24 24-24h43c12 0 20-6 23-15 4 7 5 15 1 24C84 91 70 100 55 100Z"/>
+  </g>
+</svg>

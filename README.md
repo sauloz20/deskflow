@@ -75,7 +75,7 @@ O planejamento considera práticas observadas em repositórios públicos de [Gus
 
 ## Execução local
 
-O projeto está em fase de design e prototipação. Os comandos de instalação, variáveis de ambiente e instruções Docker serão documentados quando o ambiente de desenvolvimento estiver disponível.
+A primeira base visual está em desenvolvimento. Consulte [Design System](docs/design-system.md) para componentes, escopo e instruções. Com Node.js 22+ e pnpm 10.4.1, execute `pnpm install` e `pnpm dev`, depois abra http://localhost:3000. O catálogo utiliza dados fictícios e ainda aguarda validação de build.
 
 ## Autor
 
