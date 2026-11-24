@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { ArrowRight, CheckCircle2, Eye, EyeOff, Layers3, LifeBuoy, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Eye, EyeOff, Layers3, LifeBuoy, ShieldCheck } from 'lucide-react';
 import { Button } from '@deskflow/ui';
 import Link from 'next/link';
+import { Workspace } from './workspace';
 
 const demoEmail = 'demo@deskflow.example';
 const demoPassword = 'deskflow-demo';
@@ -26,6 +27,8 @@ export default function LoginPage() {
     setAuthenticated(true);
   }
 
+  if (authenticated) return <Workspace onLogout={() => { setAuthenticated(false); setEmail(''); setPassword(''); setVisible(false); }} />;
+
   return (
     <main className="df-login">
       <section className="df-login-main" aria-labelledby="login-title">
@@ -35,15 +38,7 @@ export default function LoginPage() {
         </header>
 
         <div className="df-login-content">
-          {authenticated ? (
-            <>
-              <div className="df-login-kicker"><CheckCircle2 size={18} aria-hidden="true"/> Demonstração iniciada</div>
-              <h1 id="login-title" className="df-login-title">Bem-vindo ao DeskFlow.</h1>
-              <p className="df-login-description">A seleção de organização será a próxima interface do protótipo. Nenhuma sessão real foi criada.</p>
-              <Button onClick={() => { setAuthenticated(false); setEmail(''); }}>Voltar ao login</Button>
-            </>
-          ) : (
-            <>
+          <>
               <span className="df-login-kicker">ACESSO À PLATAFORMA</span>
               <h1 id="login-title" className="df-login-title">Bem-vindo de volta.</h1>
               <p className="df-login-description">Acesse seu ambiente de atendimento e acompanhe suas solicitações.</p>
@@ -68,7 +63,6 @@ export default function LoginPage() {
                 <Button variant="secondary" className="w-full" onClick={() => { setEmail(demoEmail); setPassword(demoPassword); setError(''); }}>Preencher dados de demonstração</Button>
               </div>
             </>
-          )}
         </div>
         <footer className="df-login-footer">
           <span>DeskFlow · Protótipo visual</span>

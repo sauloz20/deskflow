@@ -34,3 +34,7 @@ Execute `pnpm build` antes dos testes. Execute `pnpm --filter @deskflow/web exec
 ## Protótipo de login
 
 A rota `/` apresenta o login demonstrativo e `/design-system` preserva o catálogo visual. O login usa somente credenciais fictícias, sem API, banco ou sessão real. A seleção de organização será implementada posteriormente. Testes de fluxo e acessibilidade foram adicionados; aguardar CI.
+
+## Protótipo de fluxos P0
+
+Seleção de organização e papel fictícios, portal do solicitante, atendimento, painel e administração foram implementados em memória para demonstração. Não constituem autenticação, autorização ou persistência reais; RF01–RF10, RF21 e RF22 dependem de implementação e validação no servidor. Testes de navegação e criação de chamados adicionados.

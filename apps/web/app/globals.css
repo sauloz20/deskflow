@@ -87,3 +87,43 @@ th { color: var(--muted); font-weight: 600; }
   .df-login-aside { display: none; }
   .df-login-main { min-height: 100svh; gap: 28px; padding: 24px; }
 }
+
+/* Workspace prototype */
+.df-org-select { min-height: 100svh; display: grid; place-items: center; padding: 24px; }
+.df-org-wrap { width: min(100%, 520px); }
+.df-org-wrap h1, .df-sectionhead h1 { font-size: clamp(27px, 3vw, 38px); font-weight: 700; letter-spacing: -.035em; line-height: 1.2; margin: 8px 0; }
+.df-org-wrap > p:not(.df-login-kicker), .df-sectionhead p:not(.df-login-kicker) { color: var(--muted); line-height: 1.6; }
+.df-org-grid { display: grid; gap: 12px; margin: 20px 0; }
+.df-org-option { display: flex; align-items: center; gap: 16px; text-align: left; }
+.df-org-option:hover, .df-recent:hover { background: #f1f5f9; }
+.df-org-option > span:nth-child(2) { flex: 1; }
+.df-org-option strong, .df-org-option small { display: block; }
+.df-org-option small { color: var(--muted); }
+.df-org-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 10px; background: var(--primary); color: white; font-weight: 700; flex-shrink: 0; }
+.df-workspace { min-height: 100svh; display: grid; grid-template-columns: 248px minmax(0,1fr); }
+.df-workspace-nav { display: flex; flex-direction: column; gap: 16px; padding: 24px 16px; background: white; border-right: 1px solid var(--border); min-width: 0; }
+.df-workspace-brand { display: flex; align-items: center; gap: 10px; font-size: 22px; color: var(--primary); }
+.df-workspace-label { font-size: 10px; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+.df-workspace-nav nav { display: grid; gap: 4px; }
+.df-workspace-nav nav button, .df-workspace-bottom button, .df-switch { display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 10px; border-radius: 8px; text-align: left; font-size: 14px; }
+.df-switch { border: 1px solid var(--border); justify-content: space-between; }
+.df-workspace-nav nav button[aria-current], .df-workspace-nav nav button:hover { background: #e8f4f2; color: var(--primary); font-weight: 600; }
+.df-workspace-bottom { margin-top: auto; font-size: 13px; color: var(--muted); }
+.df-workspace-main { min-width: 0; }
+.df-workspace-top { background: white; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 16px 30px; font-size: 13px; }
+.df-demo-label { color: var(--accent-text); font-weight: 600; }
+.df-workspace-body { max-width: 1320px; margin: auto; padding: 30px; }
+.df-sectionhead { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+.df-dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,160px),1fr)); gap: 12px; }
+.df-panel-title { font-weight: 700; font-size: 18px; margin-bottom: 14px; }
+.df-recent { width: 100%; text-align: left; padding: 14px 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--border); }
+.df-recent strong, .df-recent small { display: block; overflow-wrap: anywhere; }
+.df-recent small { color: var(--muted); font-size: 12px; }
+.df-filter-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,175px),1fr)); gap: 12px; align-items: end; }
+.df-form-grid { display: grid; max-width: 680px; gap: 16px; }
+.df-field textarea { resize: vertical; padding: 12px; border: 1px solid var(--input); border-radius: 8px; width: 100%; min-width: 0; }
+.df-detail-grid { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr); gap: 16px; align-items: start; }
+.df-pagination, .df-admin-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 12px 0; font-size: 13px; }
+.df-admin-row { border-bottom: 1px solid var(--border); }
+.df-prototype-note { display: flex; align-items: center; gap: 8px; margin-top: 28px; font-size: 12px; color: var(--muted); }
+@media(max-width: 767px) { .df-workspace { grid-template-columns: minmax(0,1fr); } .df-workspace-nav { border-right: 0; border-bottom: 1px solid var(--border); padding: 16px; gap: 8px; } .df-workspace-nav nav { display: flex; flex-wrap: wrap; } .df-workspace-body { padding: 16px; } .df-workspace-top { padding: 12px 16px; } .df-detail-grid { grid-template-columns: minmax(0,1fr); } }
