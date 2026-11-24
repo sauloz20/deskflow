@@ -166,3 +166,102 @@ th { color: var(--muted); font-weight: 600; }
 @media (max-width: 319px) {
   .df-dashboard-grid, .df-workspace-nav nav { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Workspace product design — v0.2 */
+.df-workspace { background: #f5f7fa; grid-template-columns: 252px minmax(0, 1fr); }
+.df-workspace-nav { padding: 24px 16px; gap: 14px; max-height: 100svh; overflow-y: auto; }
+.df-workspace-brand { gap: 12px; padding: 2px 8px 20px; }
+.df-workspace-brand strong { display: block; line-height: 1.1; }
+.df-workspace-brand small { display: block; font-size: 11px; font-weight: 500; color: #475569; letter-spacing: 0; margin-top: 4px; }
+.df-switch { background: #f8fafc; min-width: 0; }
+.df-switch-label { display: flex; align-items: center; gap: 8px; min-width: 0; overflow-wrap: anywhere; }
+.df-switch-label svg, .df-switch > svg { flex-shrink: 0; }
+.df-workspace-nav nav button { position: relative; }
+.df-workspace-nav nav button[aria-current] { box-shadow: inset 3px 0 0 var(--accent-text); }
+.df-workspace-bottom { border-top: 1px solid var(--border); padding-top: 12px; }
+.df-breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: #475569; min-width: 0; overflow-wrap: anywhere; }
+.df-breadcrumb strong { color: var(--foreground); }
+.df-demo-label { display: inline-flex; align-items: center; gap: 6px; }
+.df-demo-dot { display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-text); }
+.df-workspace-body { max-width: 1480px; }
+.df-dashboard-hero { background: linear-gradient(110deg, #12465a, #18586a); padding: clamp(20px, 3vw, 32px); border-radius: 16px; color: white; align-items: center; }
+.df-dashboard-hero .df-login-kicker { color: #b5f5e5; }
+.df-dashboard-hero h1 { color: white; }
+.df-dashboard-hero p:not(.df-login-kicker) { color: #e4f1f5; max-width: 65ch; }
+.df-dashboard-hero > button { background: white; color: #12465a; }
+.df-dashboard-hero > button:hover { background: #e8f4f2; color: #12465a; }
+.df-dashboard-hero > button:focus-visible { outline-color: #a7f3d0; }
+.df-period-card { padding: 16px 20px; }
+.df-period-title { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; color: var(--primary); font-size: 14px; }
+.df-period-card .df-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) auto; }
+.df-period-card > p { color: #475569; }
+.df-dashboard-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.df-dashboard-grid .df-status-metric { min-height: 162px; align-content: start; gap: 12px; padding: 16px; }
+.df-metric-heading { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600; min-width: 0; }
+.df-metric-heading > span:last-child { overflow-wrap: anywhere; }
+.df-metric-icon { width: 32px; height: 32px; flex-shrink: 0; border-radius: 9px; color: #1e40af; background: #dbeafe; display: grid; place-items: center; }
+.df-status-metric[data-status="Aguardando solicitante"] .df-metric-icon { color: #92400e; background: #fef3c7; }
+.df-status-metric[data-status="Resolvido"] .df-metric-icon { color: #166534; background: #dcfce7; }
+.df-status-metric[data-status="Fechado"] .df-metric-icon { color: #334155; background: #e2e8f0; }
+.df-metric strong { font-size: 32px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.df-metric small { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; }
+.df-flow-metrics .df-metric { grid-template-columns: 1fr auto; align-items: center; padding: 18px; }
+.df-flow-metrics .df-metric small { grid-column: 1 / -1; }
+.df-panel-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+.df-panel-header .df-panel-title { margin: 0 0 4px; }
+.df-panel-header p { font-size: 13px; color: #475569; }
+.df-distribution-total { font-size: 13px; color: var(--primary); }
+.df-distribution-list { display: grid; gap: 12px; }
+.df-distribution-list li { display: grid; grid-template-columns: minmax(110px, 175px) minmax(0, 1fr) 32px; gap: 12px; align-items: center; font-size: 13px; }
+.df-distribution-list strong { text-align: right; font-variant-numeric: tabular-nums; }
+.df-chart-track { display: block; background: #e7eef3; border-radius: 6px; height: 10px; overflow: hidden; }
+.df-chart-fill { display: block; background: #3477a5; height: 100%; border-radius: inherit; }
+.df-chart-fill[data-status="Aguardando solicitante"] { background: #b45309; }
+.df-chart-fill[data-status="Resolvido"] { background: #15803d; }
+.df-chart-fill[data-status="Fechado"] { background: #64748b; }
+.df-product-table { display: none; }
+.df-product-list { display: grid; gap: 12px; }
+.df-product-table table { table-layout: fixed; }
+.df-product-table th:first-child { width: 40%; }
+.df-product-table th { background: #f1f5f9; font-size: 12px; }
+.df-product-table td { vertical-align: middle; overflow-wrap: anywhere; }
+.df-product-table tbody tr:hover { background: #f8fafc; }
+.df-ticket-link { display: grid; text-align: left; gap: 4px; width: 100%; min-height: 44px; align-content: center; overflow-wrap: anywhere; }
+.df-ticket-link strong { color: var(--primary); }
+.df-ticket-link:hover strong { text-decoration: underline; }
+.df-ticket-link small, .df-ticket-card small { color: #475569; font-size: 12px; }
+.df-ticket-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: left; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+.df-ticket-card:hover { background: #f8fafc; border-color: var(--accent-text); }
+.df-ticket-card-title { display: grid; gap: 4px; overflow-wrap: anywhere; }
+.df-ticket-card-arrow { color: var(--accent-text); }
+.df-ticket-card-badges { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1; }
+.df-ticket-card > small { grid-column: 1 / -1; overflow-wrap: anywhere; }
+.df-ticket-description { white-space: pre-wrap; overflow-wrap: anywhere; }
+.df-conversation-card .df-timeline { overflow-wrap: anywhere; }
+.df-internal-note { display: flex; gap: 8px; align-items: center; padding: 10px; background: #fff7e6; border: 1px solid #e6bd69; color: #78350f; border-radius: 8px; font-size: 13px; }
+.df-internal-note input { min-width: 18px; min-height: 18px; }
+@media (min-width: 1150px) {
+  .df-product-table { display: block; }
+  .df-product-list { display: none; }
+}
+@media (min-width: 768px) and (max-width: 1240px) {
+  .df-dashboard-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .df-workspace { grid-template-columns: minmax(0, 1fr); }
+  .df-workspace-nav { padding: 14px 16px; max-height: none; overflow: visible; gap: 8px; }
+  .df-workspace-brand { padding: 0 0 4px; }
+  .df-workspace-bottom { padding-top: 8px; }
+  .df-dashboard-hero { border-radius: 12px; }
+  .df-dashboard-hero > button { width: 100%; }
+  .df-period-card { padding: 14px; }
+  .df-period-card .df-filter-grid { grid-template-columns: minmax(0, 1fr); }
+  .df-dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .df-dashboard-grid .df-status-metric { min-height: 132px; padding: 12px; gap: 9px; }
+  .df-status-metric .df-metric-heading { flex-wrap: wrap; gap: 6px; }
+  .df-metric-icon { width: 29px; height: 29px; }
+  .df-distribution-list li { grid-template-columns: minmax(95px, 1fr) minmax(0, 1fr) 24px; gap: 8px; }
+}
+@media (max-width: 319px) {
+  .df-dashboard-grid { grid-template-columns: minmax(0, 1fr); }
+}

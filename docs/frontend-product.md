@@ -48,3 +48,13 @@ P1 e P2 permanecem no backlog conforme o PDF.
 - A API tem serviço de prontidão do banco; a pipeline aplica o esquema em PostgreSQL descartável e executa um teste de persistência transacional de chamados, comentários e auditoria. Não é a integração das telas com a API.
 
 A aprovação desta entrega depende da execução do CI e revisão das novas capturas. Autenticação, endpoints de negócio, permissões, migrações versionadas e integração continuam pendentes.
+
+## Entrega 03 — refinamento visual do workspace
+
+- Cabeçalho de dashboard com identificação do papel, ação principal e identidade visual existente.
+- Indicadores com ícones, contraste semântico e hierarquia numérica; distribuição por status para gestão e administração, com valores textuais e sem depender apenas da cor.
+- Fila em tabela semântica no desktop amplo e cartões em telas menores, mantendo pesquisa, filtros, paginação e abertura de detalhes.
+- Navegação lateral com ícones específicos e estado ativo; descrição e conversa com quebra de textos longos e destaque para notas internas.
+- Novo teste de adaptação de layout e abertura de chamado por teclado.
+
+A revisão visual e a aprovação do pipeline desta entrega permanecem pendentes. Dados demonstrativos e backend continuam separados.

@@ -65,3 +65,22 @@ test('dashboard and ticket queue retain the selected date interval', async ({ pa
   await expect(page.getByText('1 resultado(s)', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /Atualização de software/ })).toBeVisible();
 });
+
+test('ticket queue adapts to viewport and opens a ticket by keyboard', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Preencher dados de demonstração' }).click();
+  await page.getByRole('button', { name: 'Entrar' }).click();
+  await page.getByLabel('Perfil de demonstração').selectOption('Atendente');
+  await page.getByRole('button', { name: /Aurora Tecnologia/ }).click();
+  await page.getByRole('button', { name: 'Chamados', exact: true }).click();
+  if ((page.viewportSize()?.width ?? 0) >= 1150) {
+    await expect(page.getByRole('table', { name: 'Chamados encontrados' })).toBeVisible();
+  } else {
+    await expect(page.locator('.df-product-list')).toBeVisible();
+  }
+  const ticket = page.getByRole('button', { name: /Falha de acesso ao e-mail/ });
+  await ticket.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Falha de acesso ao e-mail' })).toBeVisible();
+  await expect(page.getByLabel(/Nota interna/)).toBeVisible();
+});

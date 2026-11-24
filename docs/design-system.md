@@ -43,3 +43,7 @@ Seleção de organização e papel fictícios, portal do solicitante, atendiment
 ## Evidência visual
 
 O CI gera capturas das interfaces principais em desktop e 360 px, verifica ausência de rolagem horizontal e publica o artefato `deskflow-interface-evidence`. As 30 capturas da execução [45403856111](https://github.com/sauloz20/deskflow/actions/runs/45403856111) foram inspecionadas visualmente com assistência de IA. Consulte o [relatório de revisão](visual-review.md). A aprovação humana definitiva e a validação interativa permanecem pendentes.
+
+## Evolução visual do produto — 0.2
+
+O workspace usa fundo neutro, cabeçalho em azul petróleo, controles de navegação com ícones e indicadores por estado. As filas utilizam tabela com cabeçalhos semânticos em desktop amplo a partir de 1150 px e cartões em larguras menores. Gráficos de distribuição incluem contagens textuais; as barras são decorativas. Notas internas possuem aviso explícito de visibilidade. O login e os tokens originais foram preservados. Validar por novas capturas e testes de teclado antes de aprovação.
