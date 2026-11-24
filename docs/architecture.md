@@ -1,10 +1,10 @@
 # Arquitetura — fundação do back-end
 
-Conforme requisitos v1.1, o monorepo contém Next.js (apps/web), NestJS (apps/api), biblioteca visual (packages/ui) e documentação. A API é um monólito modular com prefixo /api/v1 e Swagger em /docs. Nesta entrega, apenas GET /api/v1/health é funcional; os endpoints de negócio ainda não existem.
+Conforme requisitos v1.1, o monorepo contém Next.js (apps/web), NestJS (apps/api), biblioteca visual (packages/ui) e documentação. A API é um monólito modular com prefixo /api/v1 e Swagger em /docs. Nesta entrega, GET /api/v1/health verifica o processo e GET /api/v1/health/ready consulta o banco configurado; os endpoints de negócio ainda não existem.
 
 ## Modelo de dados
 
-O esquema Prisma usa PostgreSQL e inclui organizações, membros, equipes, categorias, chamados, comentários e auditoria. Referências compostas por organização evitam referências cruzadas na modelagem, mas não substituem autorização no servidor. Protocolo é único por organização. A política de acesso e as transações serão implementadas nos módulos de domínio. O esquema não foi aplicado a um banco real.
+O esquema Prisma usa PostgreSQL e inclui organizações, membros, equipes, categorias, chamados, comentários e auditoria. Referências compostas por organização evitam referências cruzadas na modelagem, mas não substituem autorização no servidor. Protocolo é único por organização. A política de acesso e as transações serão implementadas nos módulos de domínio. O CI foi configurado para aplicar o esquema em um PostgreSQL descartável e verificar criação e leitura de registros em uma transação revertida. Banco de produção e migrações versionadas permanecem pendentes.
 
 ## Desenvolvimento
 

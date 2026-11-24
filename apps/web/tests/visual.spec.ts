@@ -31,6 +31,10 @@ test('visual evidence for main interface states', async ({ page }, info) => {
   await capture(page, '06-atendente', path);
   await page.getByRole('button', { name: 'Chamados', exact: true }).click();
   await capture(page, '07-fila', path);
+  if (await page.getByRole('button', { name: /Mostrar filtros/ }).isVisible()) {
+    await page.getByRole('button', { name: /Mostrar filtros/ }).click();
+    await capture(page, '07-fila-filtros', path);
+  }
   await page.getByRole('button', { name: /Falha de acesso ao e-mail/ }).click();
   await capture(page, '08-detalhe', path);
   await enter(page, 'Gestor');
@@ -39,6 +43,8 @@ test('visual evidence for main interface states', async ({ page }, info) => {
   await enter(page, 'Administrador');
   await page.getByRole('button', { name: /Aurora Tecnologia/ }).click();
   await capture(page, '10-admin', path);
+  await page.getByRole('button', { name: /Admin Demo.*Administrador/ }).click();
+  await capture(page, '12-perfil', path);
   for (const view of ['Membros','Equipes','Categorias','Auditoria','Configurações']) {
     await page.getByRole('button', { name: view, exact: true }).click();
     await capture(page, '11-admin-' + view.toLowerCase(), path);

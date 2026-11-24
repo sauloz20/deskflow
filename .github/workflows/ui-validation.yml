@@ -9,6 +9,22 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: deskflow
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: deskflow
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U deskflow -d deskflow"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://deskflow:ci-only-password@localhost:5432/deskflow
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -18,8 +34,10 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       - name: Validate Prisma schema
         run: pnpm --filter @deskflow/api schema:validate
-        env:
-          DATABASE_URL: postgresql://deskflow:placeholder@localhost:5432/deskflow
+      - name: Prepare disposable PostgreSQL schema
+        run: pnpm --filter @deskflow/api exec prisma db push
+      - name: Verify persistence
+        run: pnpm --filter @deskflow/api exec node scripts/db-smoke.mjs
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm --filter @deskflow/web exec playwright install --with-deps chromium

@@ -38,3 +38,13 @@ Aplicar os princípios já registrados no README: clareza (Gustavo Guanabara), c
 - [ ] Aprovação visual humana e acessibilidade manual.
 
 P1 e P2 permanecem no backlog conforme o PDF.
+
+## Entrega 02 — indicadores e rastreabilidade
+
+- Dashboard e fila compartilham intervalo de datas, considerando o fuso America/Sao_Paulo.
+- Criações são contadas pela data de criação; resoluções contam chamados distintos com evento de resolução no intervalo. O indicador abre a lista correspondente, inclusive chamados reabertos.
+- Histórico é ordenado por timestamp e alterações de prioridade/responsável registram valor anterior e novo.
+- Novo teste Playwright cobre a correspondência entre indicadores e filas. Novas capturas incluem perfil e filtros expandidos no mobile.
+- A API tem serviço de prontidão do banco; a pipeline aplica o esquema em PostgreSQL descartável e executa um teste de persistência transacional de chamados, comentários e auditoria. Não é a integração das telas com a API.
+
+A aprovação desta entrega depende da execução do CI e revisão das novas capturas. Autenticação, endpoints de negócio, permissões, migrações versionadas e integração continuam pendentes.

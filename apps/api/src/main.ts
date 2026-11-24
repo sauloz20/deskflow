@@ -10,7 +10,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
   const document = new DocumentBuilder()
     .setTitle('DeskFlow API')
-    .setDescription('API em desenvolvimento. Apenas o endpoint de saúde está disponível nesta etapa.')
+    .setDescription('API em desenvolvimento. Endpoints de saúde e prontidão; módulos de negócio em desenvolvimento.')
     .setVersion('0.1')
     .build();
   SwaggerModule.setup('docs', app, SwaggerModule.createDocument(app, document));
