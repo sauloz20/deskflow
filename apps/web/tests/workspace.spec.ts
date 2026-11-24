@@ -33,3 +33,19 @@ test('administrator can manage categories and switch organizations', async ({ pa
   await page.getByRole('button', {name:'Categorias', exact:true}).click();
   await expect(page.getByText('Rede', {exact:true})).toHaveCount(0);
 });
+
+test('dashboard indicators lead to matching queues and profile is accessible', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Preencher dados de demonstração' }).click();
+  await page.getByRole('button', { name: 'Entrar' }).click();
+  await page.getByRole('button', { name: /Aurora Tecnologia/ }).click();
+  await page.getByRole('button', { name: /Aberto.*Ver chamados/ }).click();
+  await expect(page.getByText('1 resultado(s)', { exact: true })).toBeVisible();
+  if (await page.getByRole('button', { name: /Mostrar filtros/ }).isVisible()) {
+    await page.getByRole('button', { name: /Mostrar filtros/ }).click();
+  }
+  await expect(page.getByLabel('Status', { exact: true })).toHaveValue('Aberto');
+  await page.getByRole('button', { name: /Marina Alves.*Solicitante/ }).click();
+  await expect(page.getByRole('heading', { name: 'Meu perfil' })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});

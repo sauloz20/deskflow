@@ -75,7 +75,7 @@ O planejamento considera práticas observadas em repositórios públicos de [Gus
 
 ## Execução local
 
-A primeira base visual está em desenvolvimento. Consulte [Design System](docs/design-system.md) para componentes, escopo e instruções. Com Node.js 22+ e pnpm 10.4.1, execute `pnpm install` e `pnpm dev`, depois abra http://localhost:3000. O login, a seleção de organização e o espaço de trabalho por perfil usam dados fictícios em memória; não são autenticação ou persistência reais. O catálogo permanece em /design-system. Consulte também [Arquitetura e API](docs/architecture.md) para a fundação NestJS e o esquema Prisma.
+A base visual do produto está em evolução. Consulte também [Front-end do produto](docs/frontend-product.md) para a preparação da integração com a API. Consulte [Design System](docs/design-system.md) para componentes, escopo e instruções. Com Node.js 22+ e pnpm 10.4.1, execute `pnpm install` e `pnpm dev`, depois abra http://localhost:3000. O login, a seleção de organização e o espaço de trabalho por perfil usam dados fictícios em memória; não são autenticação ou persistência reais. O catálogo permanece em /design-system. Consulte também [Arquitetura e API](docs/architecture.md) para a fundação NestJS e o esquema Prisma.
 
 ## Autor
 
